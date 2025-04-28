@@ -36,7 +36,7 @@ The application behaves like the Unix `tail -f` command — watching a log file 
 
     ```bash
     git clone https://github.com/Logeswaran7/Unix-tail--f-python-implementation.git
-    cd real-time-log-monitor
+    cd Unix Tail --f Python Implementation
     ```
 
 2. Install required dependencies:
