@@ -81,7 +81,7 @@ The application behaves like the Unix `tail -f` command — watching a log file 
 Example:  
 When new log entries are written to `log.txt`, they instantly appear in the browser. You can watch a video demonstration of this functionality below:
 
-![Live Log Monitoring Video](output.mp4)
+![Live Log Monitoring Video](output.gif)
 
 ---
 
