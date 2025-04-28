@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Log viewer</title>
+    <style>
+        #log{
+            height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            border: 10px;
+            padding: 1px;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+    <h2>Log viewer</h2>
+    <pre id ="log"></pre>
+    <script src = "https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+    <script>
+        let loglines = [];
+        const socketio = io('http://localhost:5000'); 
+
+        function UpdateDisplay(){
+            const logElements = document.getElementById("log");
+            logElements.textContent = loglines.join('');
+            logElements.scrollTop = logElements.scrollHeight;
+        }
+        
+        socketio.on('connect', () => {
+            console.log('client connected');
+        });
+
+        socketio.on('initial_logs', (msg) => {
+            loglines = msg.data.trim().split('\n').map(line => line + '\n');
+            UpdateDisplay();
+        });
+
+        socketio.on('log_updates', (msg) => {
+            loglines.push(msg.data);
+            UpdateDisplay();
+        });
+    </script>
+</body>
+</html>
